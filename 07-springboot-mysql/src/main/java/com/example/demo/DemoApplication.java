@@ -7,6 +7,7 @@ import com.example.demo.model.dao.IRolDao;
 import com.example.demo.model.dao.IUsuarioDao;
 import com.example.demo.repository.IUsuarioService;
 import com.example.demo.repository.impl.UsuarioServiceImpl;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @SpringBootApplication
+@Log4j2
 public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private IRolDao rolDao;
@@ -35,61 +37,65 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		List<Rol> roles = this.rolDao.findAll();
-		System.out.println(Arrays.toString(roles.toArray()));
+		log.info(Arrays.toString(roles.toArray()));
 
 		Optional<Rol> rolRRHH = this.rolDao.findById(3);
 
 		if (rolRRHH.isPresent()) {
-			System.out.println("args = " + rolRRHH);
+			log.info("args = " + rolRRHH);
 		} else {
-			System.out.println("Rol "+ 3+" no fue encontrado");
+			log.info("Rol "+ 3+" no fue encontrado");
 		}
 
 		List<Usuario> usuarios = this.usuarioService.findAll();
-		System.out.println(Arrays.toString(usuarios.toArray()));
+		log.info(Arrays.toString(usuarios.toArray()));
 
 		// obtener lista de usuarios en base a método de crud
 		Iterable<Integer> ids = Arrays.asList(1,2);
 
 		Iterable<Usuario> usuarios2 = this.usuarioService.findAllById(ids);
-		System.out.println("usuarios2 = ");
+		log.info("usuarios2 = ");
 		for(Usuario s : usuarios2){
-			System.out.println(s.toString());
+			log.info(s.toString());
 		}
 
 		// obtener contador de registro en la tabla de usuarios
 		long cantidadUsuarios = this.usuarioService.count();
 
-		System.out.println("cantidad de usuarios = " + cantidadUsuarios);
+		log.info("cantidad de usuarios = " + cantidadUsuarios);
 
 		// comprobar si el identificador del usuario existe
 		boolean siExiste = this.usuarioService.existsById(4);
 
-		System.out.println("Existe el usuario con id 4 = " + siExiste);
+		log.info("Existe el usuario con id 4 = " + siExiste);
 		// obtener informacion utilizando la nomenclatura base para consultar
-		System.out.println("buscar por id y rut ");
+		log.info("buscar por id y rut ");
 		List<Usuario> listUsuariosPorIdRut = this.usuarioService.findByIdAndRut(1,"18565305-6");
-		System.out.println(Arrays.toString(listUsuariosPorIdRut.toArray()));
-		System.out.println("buscar por id, rut y  nombre ");
+		log.info(Arrays.toString(listUsuariosPorIdRut.toArray()));
+		log.info("buscar por id, rut y  nombre ");
 		List<Usuario> listUsuariosPorIdRutNombre = this.usuarioService.findByIdAndRutAndNombre(3,"22565305-0","eduado");
-		System.out.println(Arrays.toString(listUsuariosPorIdRutNombre.toArray()));
+		log.info(Arrays.toString(listUsuariosPorIdRutNombre.toArray()));
 		// por Hql
-		System.out.println("buscar por rut ...");
+		log.info("buscar por rut ...");
 		List<Usuario> usuariosRut = this.usuarioService.findByRut("11563200-1");
-		System.out.println(Arrays.toString(usuariosRut.toArray()));
-		System.out.println("buscar por rut y id...");
+		log.info(Arrays.toString(usuariosRut.toArray()));
+		log.info("buscar por rut y id...");
 		List<Usuario> usuariosRutId = this.usuarioService.findByRutAndId("11563200-1",5);
-		System.out.println(Arrays.toString(usuariosRutId.toArray()));
+		log.info(Arrays.toString(usuariosRutId.toArray()));
 		// SQL
-		System.out.println("buscar por todos los usuarios");
+		log.info("buscar por todos los usuarios");
 		List<Usuario> usuariosall = this.usuarioService.getAllUsers();
-		System.out.println(Arrays.toString(usuariosall.toArray()));
-		System.out.println("buscar por todos los usuarios superior a un id");
+		log.info(Arrays.toString(usuariosall.toArray()));
+		log.info("buscar por todos los usuarios superior a un id");
 		Integer usuariosalloverid = this.usuarioService.getAllUsersById(3);
-		System.out.println(usuariosalloverid);
+		log.info(usuariosalloverid);
 
 
 		//HACER EJERCICIO NOMBRE CONTENGA UNA LETRA POR SQL
+
+// select * from usuario where upper(nombre) like '%F%'
+		List<Usuario> usuarioConF = this.usuarioService.getAllUsersWithF();
+		log.info(Arrays.toString(usuarioConF.toArray()));
 		this.estadisticasCore.ReporteUsuarios();
 
 	}

@@ -28,4 +28,7 @@ public interface IUsuarioDao extends CrudRepository<Usuario, Integer> {
     @Query(value = "select count(*) from usuario  where id_usuario > ?1", nativeQuery = true)
     Integer getAllUsersById(Integer id);
 
+    @Query(value = "select * from usuario where upper(nombre) like '%F%'", nativeQuery = true)
+    List<Usuario> getAllUsersWithF();
+
 }

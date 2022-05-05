@@ -72,5 +72,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return this.usuarioDao.getAllUsersById(id);
     }
 
+    @Override
+    public List<Usuario> getAllUsersWithF() {
+        return this.usuarioDao.getAllUsersWithF();
+    }
+
 
 }

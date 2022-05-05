@@ -25,4 +25,5 @@ public interface IUsuarioService  {
     List<Usuario> getAllUsers();
     Integer getAllUsersById(Integer id);
 
+    List<Usuario> getAllUsersWithF();
 }
