@@ -1,0 +1,2 @@
+INSERT INTO rol (description) VALUES ('admin'),('visor'),('rrhh');
+INSERT INTO usuario (nombre,rut,edad,id_rol) VALUES ('javier','18565305-6',28,1),('fernando','18535307-6',28,2),('eduado','22565305-0',27,3),('Angello','11563200-1',30,2);

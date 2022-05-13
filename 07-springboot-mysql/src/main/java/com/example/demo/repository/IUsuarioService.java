@@ -26,4 +26,6 @@ public interface IUsuarioService  {
     Integer getAllUsersById(Integer id);
 
     List<Usuario> getAllUsersWithF();
+
+    Usuario save(Usuario user);
 }

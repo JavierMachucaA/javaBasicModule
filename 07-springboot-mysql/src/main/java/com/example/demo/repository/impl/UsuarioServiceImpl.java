@@ -77,5 +77,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return this.usuarioDao.getAllUsersWithF();
     }
 
+    @Override
+    public Usuario save(Usuario user) {
+        Usuario userDb = this.usuarioDao.save(user);
+        return userDb;
+    }
+
 
 }

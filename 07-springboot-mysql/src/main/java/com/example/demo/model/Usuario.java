@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import javax.persistence.*;
 @Table( name = "usuario")
 @Data // reemplaza getter, setter y contructor con todos sus atributos
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @Id
