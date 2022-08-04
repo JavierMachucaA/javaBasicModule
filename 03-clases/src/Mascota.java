@@ -2,7 +2,7 @@ import interfaces.Animal;
 
 import java.lang.*;
 
-public class Mascota { // implements Animal
+public class Mascota  implements Animal {
     // características
     private Integer edad;
     private String tipoAnimal;
@@ -17,11 +17,6 @@ public class Mascota { // implements Animal
         this.tipoAnimal = tipoAnimal;
         this.estatura = estatura;
         this.nombre = nombre;
-    }
-
-    //acciones de mascota
-    public void emitirSonido() {
-        System.out.println("miau");
     }
 
     public void correr() {
@@ -73,5 +68,13 @@ public class Mascota { // implements Animal
                 ", tipoAnimal='" + tipoAnimal + '\'' +
                 ", estatura=" + estatura +
                 '}';
+    }
+
+    @Override
+    public String emitirSonido(String nombre) {
+        String sonido = "miau";
+
+        System.out.println(sonido);
+        return nombre + " "+ sonido;
     }
 }

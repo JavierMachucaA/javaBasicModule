@@ -35,6 +35,6 @@ public class UserController {
         Optional<Rol> rol = this.rolDao.findById(1);
         Usuario usertmp = new Usuario(null,user.getNombre(),user.getRut(),user.getEdad(),rol.get());
         Usuario usuariobd = this.usuarioService.save(usertmp);
-        return new ResponseEntity<>(usuariobd,HttpStatus.OK);
+        return new ResponseEntity<>(usuariobd,HttpStatus.ALREADY_REPORTED);
     }
 }

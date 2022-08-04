@@ -1,6 +1,6 @@
 package enums;
 
-public enum TipoMascotaEnum {
+public enum TipoDeEntregaEnum {
     ORDERED,
     READY,
     DELIVERED;
